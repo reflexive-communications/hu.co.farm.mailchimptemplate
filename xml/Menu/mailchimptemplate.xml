@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<menu>
+  <item>
+    <path>civicrm/mailchimptemplate</path>
+    <page_callback>CRM_Mailchimptemplate_Form_MailchimpTemplate</page_callback>
+    <title>MailchimpTemplate</title>
+    <access_arguments>access CiviMail</access_arguments>
+  </item>
+</menu>
