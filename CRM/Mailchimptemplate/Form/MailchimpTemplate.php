@@ -56,8 +56,32 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplate extends CRM_Core_Form
         $campaign = $this->MailChimp->get("campaigns/$campaign_id");
         $content = $this->MailChimp->get("campaigns/$campaign_id/content");
 
-        $chimp_tokens = ['*|LIST:ADDRESS_HTML|*', '*|LIST:ADDRESS|*', '*|ARCHIVE|*', '*|UNSUB|*', '*|REWARDS|*'];
-        $civi_tokens = ['{domain.address}', '{domain.address}', $campaign['archive_url'], '{action.optOutUrl}', ''];
+        $chimp_tokens = [
+            '*|LIST:ADDRESS|*',
+            '*|LIST:ADDRESS_HTML|*',
+            '*|LIST:ADDRESSLINE|*',
+            '*|LIST_ADDRESSLINE_TEXT|*',
+            '*|EMAIL|*',
+            '*|ARCHIVE|*',
+            '*|UNSUB|*',
+            '*|REWARDS|*',
+            '*|REWARDS_TEXT|*',
+            '*|MC_PREVIEW_TEXT|*',
+            '*|ABOUT_LIST|*',
+        ];
+        $civi_tokens = [
+            '{domain.address}',
+            '{domain.address}',
+            '{domain.address}',
+            '{domain.address}',
+            '{contact.email}',
+            $campaign['archive_url'],
+            '{action.optOutUrl}',
+            '',
+            '',
+            '',
+            ''
+        ];
 
         $html = str_replace($chimp_tokens, $civi_tokens, $content['html']);
         $html = preg_replace('/<!--(.|\s)*?-->/', '', $html); // remove html comments, ms office comments break stuff
