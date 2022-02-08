@@ -118,7 +118,7 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplate extends CRM_Core_Form
             'campaigns',
             [
                 'count' => $limit,
-                'since_create_time' => date("c", strtotime("-12 months")),
+                // 'since_create_time' => date("c", strtotime("-12 months")),
                 'fields' => ['settings.title'],
             ]
         );
