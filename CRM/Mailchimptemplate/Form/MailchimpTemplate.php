@@ -118,17 +118,18 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplate extends CRM_Core_Form
             'campaigns',
             [
                 'count' => $limit,
-                'since_create_time' => date("c", strtotime("-12 months")),
+                // 'since_create_time' => date("c", strtotime("-12 months")),
                 'fields' => ['settings.title'],
             ]
         );
 
-        $sorted_campaigns = array_reverse($result['campaigns']);
         $campaigns = [];
-
-        foreach ($sorted_campaigns as $campaign) {
-            $campaigns[$campaign['id']] = $campaign['settings']['title'];
+        foreach ($result['campaigns'] as $campaign) {
+            if (!empty($campaign['settings']['title'])) {
+                $campaigns[$campaign['id']] = $campaign['settings']['title'];
+            }
         }
+        array_multisort($campaigns);
 
         return $campaigns;
     }
