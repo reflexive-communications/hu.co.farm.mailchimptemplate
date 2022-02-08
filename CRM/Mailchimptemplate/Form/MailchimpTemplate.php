@@ -129,6 +129,7 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplate extends CRM_Core_Form
                 $campaigns[$campaign['id']] = $campaign['settings']['title'];
             }
         }
+        array_multisort($campaigns);
 
         return $campaigns;
     }
