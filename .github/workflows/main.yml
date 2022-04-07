@@ -1,0 +1,15 @@
+name: CI
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  code-style:
+    name: Code style check
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: PHP-CS-Fixer
+        uses: docker://oskarstark/php-cs-fixer-ga
+        with:
+          args: --rules=@PSR2 --dry-run -v .
