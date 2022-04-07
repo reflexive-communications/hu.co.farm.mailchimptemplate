@@ -1,27 +1,26 @@
 <?xml version="1.0"?>
 <extension key="hu.co.farm.mailchimptemplate" type="module">
-  <file>mailchimptemplate</file>
-  <name>Mailchimp Template Import</name>
-  <description>Mailchimp Template Import</description>
-  <license>AGPL-3.0</license>
-  <maintainer>
-    <author>Zoltan Varady</author>
-    <email>zoltan@farm.co.hu</email>
-  </maintainer>
-  <urls>
-    <url desc="Main Extension Page">http://farm.co.hu</url>
-    <url desc="Documentation">http://farm.co.hu</url>
-    <url desc="Support">http://farm.co.hu</url>
-    <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
-  </urls>
-  <releaseDate>2022-02-08</releaseDate>
-  <version>1.2.0</version>
-  <develStage>alpha</develStage>
-  <compatibility>
-    <ver>4.2</ver>
-  </compatibility>
-  <comments>This is a new, undeveloped module</comments>
-  <civix>
-    <namespace>CRM/Mailchimptemplate</namespace>
-  </civix>
+    <file>mailchimptemplate</file>
+    <name>Mailchimp Template Import</name>
+    <description>Imports Mailchimp templates</description>
+    <license>AGPL-3.0</license>
+    <maintainer>
+        <author>Sandor Semsey</author>
+        <email>sandor@es-progress.hu</email>
+    </maintainer>
+    <urls>
+        <url desc="Main Extension Page">https://github.com/reflexive-communications/hu.co.farm.mailchimptemplate</url>
+        <url desc="Documentation">https://github.com/reflexive-communications/hu.co.farm.mailchimptemplate</url>
+        <url desc="Support">https://github.com/reflexive-communications/hu.co.farm.mailchimptemplate/issues</url>
+        <url desc="Licensing">https://www.gnu.org/licenses/agpl-3.0.html</url>
+    </urls>
+    <releaseDate>2022-02-08</releaseDate>
+    <version>1.2.0</version>
+    <develStage>stable</develStage>
+    <compatibility>
+        <ver>5.0</ver>
+    </compatibility>
+    <civix>
+        <namespace>CRM/Mailchimptemplate</namespace>
+    </civix>
 </extension>
