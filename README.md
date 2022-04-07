@@ -1,4 +1,4 @@
-# mailchimptemplate
+# hu.co.farm.mailchimptemplate
 
 [![CI](https://github.com/reflexive-communications/hu.co.farm.mailchimptemplate/actions/workflows/main.yml/badge.svg)](https://github.com/reflexive-communications/hu.co.farm.mailchimptemplate/actions/workflows/main.yml)
 
