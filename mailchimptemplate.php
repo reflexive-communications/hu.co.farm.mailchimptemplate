@@ -7,8 +7,9 @@ require_once 'mailchimptemplate.civix.php';
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_config
  */
-function mailchimptemplate_civicrm_config(&$config) {
-  _mailchimptemplate_civix_civicrm_config($config);
+function mailchimptemplate_civicrm_config(&$config)
+{
+    _mailchimptemplate_civix_civicrm_config($config);
 }
 
 /**
@@ -18,8 +19,9 @@ function mailchimptemplate_civicrm_config(&$config) {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_xmlMenu
  */
-function mailchimptemplate_civicrm_xmlMenu(&$files) {
-  _mailchimptemplate_civix_civicrm_xmlMenu($files);
+function mailchimptemplate_civicrm_xmlMenu(&$files)
+{
+    _mailchimptemplate_civix_civicrm_xmlMenu($files);
 }
 
 /**
@@ -27,8 +29,9 @@ function mailchimptemplate_civicrm_xmlMenu(&$files) {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_install
  */
-function mailchimptemplate_civicrm_install() {
-  _mailchimptemplate_civix_civicrm_install();
+function mailchimptemplate_civicrm_install()
+{
+    _mailchimptemplate_civix_civicrm_install();
 }
 
 /**
@@ -36,8 +39,9 @@ function mailchimptemplate_civicrm_install() {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_uninstall
  */
-function mailchimptemplate_civicrm_uninstall() {
-  _mailchimptemplate_civix_civicrm_uninstall();
+function mailchimptemplate_civicrm_uninstall()
+{
+    _mailchimptemplate_civix_civicrm_uninstall();
 }
 
 /**
@@ -45,8 +49,9 @@ function mailchimptemplate_civicrm_uninstall() {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_enable
  */
-function mailchimptemplate_civicrm_enable() {
-  _mailchimptemplate_civix_civicrm_enable();
+function mailchimptemplate_civicrm_enable()
+{
+    _mailchimptemplate_civix_civicrm_enable();
 }
 
 /**
@@ -54,8 +59,9 @@ function mailchimptemplate_civicrm_enable() {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_disable
  */
-function mailchimptemplate_civicrm_disable() {
-  _mailchimptemplate_civix_civicrm_disable();
+function mailchimptemplate_civicrm_disable()
+{
+    _mailchimptemplate_civix_civicrm_disable();
 }
 
 /**
@@ -70,8 +76,9 @@ function mailchimptemplate_civicrm_disable() {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_upgrade
  */
-function mailchimptemplate_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
-  return _mailchimptemplate_civix_civicrm_upgrade($op, $queue);
+function mailchimptemplate_civicrm_upgrade($op, CRM_Queue_Queue $queue = null)
+{
+    return _mailchimptemplate_civix_civicrm_upgrade($op, $queue);
 }
 
 /**
@@ -82,8 +89,9 @@ function mailchimptemplate_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_managed
  */
-function mailchimptemplate_civicrm_managed(&$entities) {
-  _mailchimptemplate_civix_civicrm_managed($entities);
+function mailchimptemplate_civicrm_managed(&$entities)
+{
+    _mailchimptemplate_civix_civicrm_managed($entities);
 }
 
 /**
@@ -97,8 +105,9 @@ function mailchimptemplate_civicrm_managed(&$entities) {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_caseTypes
  */
-function mailchimptemplate_civicrm_caseTypes(&$caseTypes) {
-  _mailchimptemplate_civix_civicrm_caseTypes($caseTypes);
+function mailchimptemplate_civicrm_caseTypes(&$caseTypes)
+{
+    _mailchimptemplate_civix_civicrm_caseTypes($caseTypes);
 }
 
 /**
@@ -111,8 +120,9 @@ function mailchimptemplate_civicrm_caseTypes(&$caseTypes) {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_caseTypes
  */
-function mailchimptemplate_civicrm_angularModules(&$angularModules) {
-_mailchimptemplate_civix_civicrm_angularModules($angularModules);
+function mailchimptemplate_civicrm_angularModules(&$angularModules)
+{
+    _mailchimptemplate_civix_civicrm_angularModules($angularModules);
 }
 
 /**
@@ -120,55 +130,53 @@ _mailchimptemplate_civix_civicrm_angularModules($angularModules);
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_alterSettingsFolders
  */
-function mailchimptemplate_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) {
-  _mailchimptemplate_civix_civicrm_alterSettingsFolders($metaDataFolders);
+function mailchimptemplate_civicrm_alterSettingsFolders(&$metaDataFolders = null)
+{
+    _mailchimptemplate_civix_civicrm_alterSettingsFolders($metaDataFolders);
 }
-
-/**
- * Functions below this ship commented out. Uncomment as required.
- *
 
 /**
  * Implements hook_civicrm_preProcess().
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_preProcess
  *
-function mailchimptemplate_civicrm_preProcess($formName, &$form) {
-
-} // */
+ * function mailchimptemplate_civicrm_preProcess($formName, &$form) {
+ *
+ * } // */
 
 /**
  * Implements hook_civicrm_navigationMenu().
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_navigationMenu
  */
-function mailchimptemplate_civicrm_navigationMenu(&$params) {
-  require_once('CRM/Core/BAO/Navigation.php');
-  // Check that our item doesn't already exist
-  $menu_item_search = array('url' => 'civicrm/mailchimptemplate');
-  $menu_items = array();
-  CRM_Core_BAO_Navigation::retrieve($menu_item_search, $menu_items);
-  if (!empty($menu_items)) {
-    return;
-  }
+function mailchimptemplate_civicrm_navigationMenu(&$params)
+{
+    require_once('CRM/Core/BAO/Navigation.php');
+    // Check that our item doesn't already exist
+    $menu_item_search = ['url' => 'civicrm/mailchimptemplate'];
+    $menu_items = [];
+    CRM_Core_BAO_Navigation::retrieve($menu_item_search, $menu_items);
+    if (!empty($menu_items)) {
+        return;
+    }
 
-  $navID = CRM_Core_DAO::singleValueQuery("SELECT max(id) FROM civicrm_navigation");
-  $navID = intval($navID);
-  $navID += 100; // this is weird stuff, if it's 1, it's overwriting sendgrid's
+    $navID = CRM_Core_DAO::singleValueQuery("SELECT max(id) FROM civicrm_navigation");
+    $navID = intval($navID);
+    $navID += 100; // this is weird stuff, if it's 1, it's overwriting sendgrid's
 
-  // Find the CiviMail menu
-  $parentID = CRM_Core_DAO::getFieldValue('CRM_Core_DAO_Navigation', 'Mailings', 'id', 'name');
-  $params[$parentID]['child'][$navID] = array(
-      'attributes' => array(
-          'label' => ts('Mailchimp Campaign Import'),
-          'name' => 'Mailchimp Campaign Import',
-          'url' => 'civicrm/mailchimptemplate',
-          'permission' => 'access CiviMail',
-          'operator' => 'OR',
-          'separator' => 1,
-          'parentID' => $parentID,
-          'navID' => $navID,
-          'active' => 1
-      )
-  );
+    // Find the CiviMail menu
+    $parentID = CRM_Core_DAO::getFieldValue('CRM_Core_DAO_Navigation', 'Mailings', 'id', 'name');
+    $params[$parentID]['child'][$navID] = [
+        'attributes' => [
+            'label' => ts('Mailchimp Campaign Import'),
+            'name' => 'Mailchimp Campaign Import',
+            'url' => 'civicrm/mailchimptemplate',
+            'permission' => 'access CiviMail',
+            'operator' => 'OR',
+            'separator' => 1,
+            'parentID' => $parentID,
+            'navID' => $navID,
+            'active' => 1,
+        ],
+    ];
 }
