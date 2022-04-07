@@ -18,7 +18,7 @@
     <version>1.2.0</version>
     <develStage>stable</develStage>
     <compatibility>
-        <ver>4.2</ver>
+        <ver>5.0</ver>
     </compatibility>
     <civix>
         <namespace>CRM/Mailchimptemplate</namespace>
