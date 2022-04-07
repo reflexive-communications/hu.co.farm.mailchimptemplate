@@ -3,8 +3,7 @@
 require_once 'CRM/Core/Form.php';
 require_once 'vendor/MailChimp.php';
 
-use \DrewM\MailChimp\MailChimp;
-
+use DrewM\MailChimp\MailChimp;
 
 /**
  * Form controller class
@@ -13,10 +12,9 @@ use \DrewM\MailChimp\MailChimp;
  */
 class CRM_Mailchimptemplate_Form_MailchimpTemplate extends CRM_Core_Form
 {
-
     private $MailChimp = null;
 
-    function __construct()
+    public function __construct()
     {
         $apikey = 'xxxxxxxxxxxxxxxxxxx-xxx';
         $this->MailChimp = new MailChimp($apikey);

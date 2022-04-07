@@ -7,27 +7,27 @@
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_config
  */
-function _mailchimptemplate_civix_civicrm_config(&$config = NULL) {
-  static $configured = FALSE;
-  if ($configured) {
-    return;
-  }
-  $configured = TRUE;
+function _mailchimptemplate_civix_civicrm_config(&$config = null)
+{
+    static $configured = false;
+    if ($configured) {
+        return;
+    }
+    $configured = true;
 
-  $template =& CRM_Core_Smarty::singleton();
+    $template =& CRM_Core_Smarty::singleton();
 
-  $extRoot = dirname(__FILE__) . DIRECTORY_SEPARATOR;
-  $extDir = $extRoot . 'templates';
+    $extRoot = dirname(__FILE__).DIRECTORY_SEPARATOR;
+    $extDir = $extRoot.'templates';
 
-  if ( is_array( $template->template_dir ) ) {
-      array_unshift( $template->template_dir, $extDir );
-  }
-  else {
-      $template->template_dir = array( $extDir, $template->template_dir );
-  }
+    if (is_array($template->template_dir)) {
+        array_unshift($template->template_dir, $extDir);
+    } else {
+        $template->template_dir = [$extDir, $template->template_dir];
+    }
 
-  $include_path = $extRoot . PATH_SEPARATOR . get_include_path( );
-  set_include_path($include_path);
+    $include_path = $extRoot.PATH_SEPARATOR.get_include_path();
+    set_include_path($include_path);
 }
 
 /**
@@ -37,10 +37,11 @@ function _mailchimptemplate_civix_civicrm_config(&$config = NULL) {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_xmlMenu
  */
-function _mailchimptemplate_civix_civicrm_xmlMenu(&$files) {
-  foreach (_mailchimptemplate_civix_glob(__DIR__ . '/xml/Menu/*.xml') as $file) {
-    $files[] = $file;
-  }
+function _mailchimptemplate_civix_civicrm_xmlMenu(&$files)
+{
+    foreach (_mailchimptemplate_civix_glob(__DIR__.'/xml/Menu/*.xml') as $file) {
+        $files[] = $file;
+    }
 }
 
 /**
@@ -48,11 +49,12 @@ function _mailchimptemplate_civix_civicrm_xmlMenu(&$files) {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_install
  */
-function _mailchimptemplate_civix_civicrm_install() {
-  _mailchimptemplate_civix_civicrm_config();
-  if ($upgrader = _mailchimptemplate_civix_upgrader()) {
-    $upgrader->onInstall();
-  }
+function _mailchimptemplate_civix_civicrm_install()
+{
+    _mailchimptemplate_civix_civicrm_config();
+    if ($upgrader = _mailchimptemplate_civix_upgrader()) {
+        $upgrader->onInstall();
+    }
 }
 
 /**
@@ -60,11 +62,12 @@ function _mailchimptemplate_civix_civicrm_install() {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_uninstall
  */
-function _mailchimptemplate_civix_civicrm_uninstall() {
-  _mailchimptemplate_civix_civicrm_config();
-  if ($upgrader = _mailchimptemplate_civix_upgrader()) {
-    $upgrader->onUninstall();
-  }
+function _mailchimptemplate_civix_civicrm_uninstall()
+{
+    _mailchimptemplate_civix_civicrm_config();
+    if ($upgrader = _mailchimptemplate_civix_upgrader()) {
+        $upgrader->onUninstall();
+    }
 }
 
 /**
@@ -72,13 +75,14 @@ function _mailchimptemplate_civix_civicrm_uninstall() {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_enable
  */
-function _mailchimptemplate_civix_civicrm_enable() {
-  _mailchimptemplate_civix_civicrm_config();
-  if ($upgrader = _mailchimptemplate_civix_upgrader()) {
-    if (is_callable(array($upgrader, 'onEnable'))) {
-      $upgrader->onEnable();
+function _mailchimptemplate_civix_civicrm_enable()
+{
+    _mailchimptemplate_civix_civicrm_config();
+    if ($upgrader = _mailchimptemplate_civix_upgrader()) {
+        if (is_callable([$upgrader, 'onEnable'])) {
+            $upgrader->onEnable();
+        }
     }
-  }
 }
 
 /**
@@ -87,13 +91,14 @@ function _mailchimptemplate_civix_civicrm_enable() {
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_disable
  * @return mixed
  */
-function _mailchimptemplate_civix_civicrm_disable() {
-  _mailchimptemplate_civix_civicrm_config();
-  if ($upgrader = _mailchimptemplate_civix_upgrader()) {
-    if (is_callable(array($upgrader, 'onDisable'))) {
-      $upgrader->onDisable();
+function _mailchimptemplate_civix_civicrm_disable()
+{
+    _mailchimptemplate_civix_civicrm_config();
+    if ($upgrader = _mailchimptemplate_civix_upgrader()) {
+        if (is_callable([$upgrader, 'onDisable'])) {
+            $upgrader->onDisable();
+        }
     }
-  }
 }
 
 /**
@@ -107,22 +112,23 @@ function _mailchimptemplate_civix_civicrm_disable() {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_upgrade
  */
-function _mailchimptemplate_civix_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
-  if ($upgrader = _mailchimptemplate_civix_upgrader()) {
-    return $upgrader->onUpgrade($op, $queue);
-  }
+function _mailchimptemplate_civix_civicrm_upgrade($op, CRM_Queue_Queue $queue = null)
+{
+    if ($upgrader = _mailchimptemplate_civix_upgrader()) {
+        return $upgrader->onUpgrade($op, $queue);
+    }
 }
 
 /**
  * @return CRM_Mailchimptemplate_Upgrader
  */
-function _mailchimptemplate_civix_upgrader() {
-  if (!file_exists(__DIR__.'/CRM/Mailchimptemplate/Upgrader.php')) {
-    return NULL;
-  }
-  else {
-    return CRM_Mailchimptemplate_Upgrader_Base::instance();
-  }
+function _mailchimptemplate_civix_upgrader()
+{
+    if (!file_exists(__DIR__.'/CRM/Mailchimptemplate/Upgrader.php')) {
+        return null;
+    } else {
+        return CRM_Mailchimptemplate_Upgrader_Base::instance();
+    }
 }
 
 /**
@@ -133,35 +139,38 @@ function _mailchimptemplate_civix_upgrader() {
  *
  * @param $dir string, base dir
  * @param $pattern string, glob pattern, eg "*.txt"
+ *
  * @return array(string)
  */
-function _mailchimptemplate_civix_find_files($dir, $pattern) {
-  if (is_callable(array('CRM_Utils_File', 'findFiles'))) {
-    return CRM_Utils_File::findFiles($dir, $pattern);
-  }
+function _mailchimptemplate_civix_find_files($dir, $pattern)
+{
+    if (is_callable(['CRM_Utils_File', 'findFiles'])) {
+        return CRM_Utils_File::findFiles($dir, $pattern);
+    }
 
-  $todos = array($dir);
-  $result = array();
-  while (!empty($todos)) {
-    $subdir = array_shift($todos);
-    foreach (_mailchimptemplate_civix_glob("$subdir/$pattern") as $match) {
-      if (!is_dir($match)) {
-        $result[] = $match;
-      }
-    }
-    if ($dh = opendir($subdir)) {
-      while (FALSE !== ($entry = readdir($dh))) {
-        $path = $subdir . DIRECTORY_SEPARATOR . $entry;
-        if ($entry[0] == '.') {
-        } elseif (is_dir($path)) {
-          $todos[] = $path;
+    $todos = [$dir];
+    $result = [];
+    while (!empty($todos)) {
+        $subdir = array_shift($todos);
+        foreach (_mailchimptemplate_civix_glob("$subdir/$pattern") as $match) {
+            if (!is_dir($match)) {
+                $result[] = $match;
+            }
         }
-      }
-      closedir($dh);
+        if ($dh = opendir($subdir)) {
+            while (false !== ($entry = readdir($dh))) {
+                $path = $subdir.DIRECTORY_SEPARATOR.$entry;
+                if ($entry[0] == '.') {
+                } elseif (is_dir($path)) {
+                    $todos[] = $path;
+                }
+            }
+            closedir($dh);
+        }
     }
-  }
-  return $result;
+    return $result;
 }
+
 /**
  * (Delegated) Implements hook_civicrm_managed().
  *
@@ -169,17 +178,18 @@ function _mailchimptemplate_civix_find_files($dir, $pattern) {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_managed
  */
-function _mailchimptemplate_civix_civicrm_managed(&$entities) {
-  $mgdFiles = _mailchimptemplate_civix_find_files(__DIR__, '*.mgd.php');
-  foreach ($mgdFiles as $file) {
-    $es = include $file;
-    foreach ($es as $e) {
-      if (empty($e['module'])) {
-        $e['module'] = 'hu.co.farm.mailchimptemplate';
-      }
-      $entities[] = $e;
+function _mailchimptemplate_civix_civicrm_managed(&$entities)
+{
+    $mgdFiles = _mailchimptemplate_civix_find_files(__DIR__, '*.mgd.php');
+    foreach ($mgdFiles as $file) {
+        $es = include $file;
+        foreach ($es as $e) {
+            if (empty($e['module'])) {
+                $e['module'] = 'hu.co.farm.mailchimptemplate';
+            }
+            $entities[] = $e;
+        }
     }
-  }
 }
 
 /**
@@ -191,24 +201,25 @@ function _mailchimptemplate_civix_civicrm_managed(&$entities) {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_caseTypes
  */
-function _mailchimptemplate_civix_civicrm_caseTypes(&$caseTypes) {
-  if (!is_dir(__DIR__ . '/xml/case')) {
-    return;
-  }
-
-  foreach (_mailchimptemplate_civix_glob(__DIR__ . '/xml/case/*.xml') as $file) {
-    $name = preg_replace('/\.xml$/', '', basename($file));
-    if ($name != CRM_Case_XMLProcessor::mungeCaseType($name)) {
-      $errorMessage = sprintf("Case-type file name is malformed (%s vs %s)", $name, CRM_Case_XMLProcessor::mungeCaseType($name));
-      CRM_Core_Error::fatal($errorMessage);
-      // throw new CRM_Core_Exception($errorMessage);
+function _mailchimptemplate_civix_civicrm_caseTypes(&$caseTypes)
+{
+    if (!is_dir(__DIR__.'/xml/case')) {
+        return;
     }
-    $caseTypes[$name] = array(
-      'module' => 'hu.co.farm.mailchimptemplate',
-      'name' => $name,
-      'file' => $file,
-    );
-  }
+
+    foreach (_mailchimptemplate_civix_glob(__DIR__.'/xml/case/*.xml') as $file) {
+        $name = preg_replace('/\.xml$/', '', basename($file));
+        if ($name != CRM_Case_XMLProcessor::mungeCaseType($name)) {
+            $errorMessage = sprintf("Case-type file name is malformed (%s vs %s)", $name, CRM_Case_XMLProcessor::mungeCaseType($name));
+            CRM_Core_Error::fatal($errorMessage);
+            // throw new CRM_Core_Exception($errorMessage);
+        }
+        $caseTypes[$name] = [
+            'module' => 'hu.co.farm.mailchimptemplate',
+            'name' => $name,
+            'file' => $file,
+        ];
+    }
 }
 
 /**
@@ -220,20 +231,21 @@ function _mailchimptemplate_civix_civicrm_caseTypes(&$caseTypes) {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_angularModules
  */
-function _mailchimptemplate_civix_civicrm_angularModules(&$angularModules) {
-  if (!is_dir(__DIR__ . '/ang')) {
-    return;
-  }
-
-  $files = _mailchimptemplate_civix_glob(__DIR__ . '/ang/*.ang.php');
-  foreach ($files as $file) {
-    $name = preg_replace(':\.ang\.php$:', '', basename($file));
-    $module = include $file;
-    if (empty($module['ext'])) {
-      $module['ext'] = 'hu.co.farm.mailchimptemplate';
+function _mailchimptemplate_civix_civicrm_angularModules(&$angularModules)
+{
+    if (!is_dir(__DIR__.'/ang')) {
+        return;
     }
-    $angularModules[$name] = $module;
-  }
+
+    $files = _mailchimptemplate_civix_glob(__DIR__.'/ang/*.ang.php');
+    foreach ($files as $file) {
+        $name = preg_replace(':\.ang\.php$:', '', basename($file));
+        $module = include $file;
+        if (empty($module['ext'])) {
+            $module['ext'] = 'hu.co.farm.mailchimptemplate';
+        }
+        $angularModules[$name] = $module;
+    }
 }
 
 /**
@@ -245,12 +257,15 @@ function _mailchimptemplate_civix_civicrm_angularModules(&$angularModules) {
  * This wrapper provides consistency.
  *
  * @link http://php.net/glob
+ *
  * @param string $pattern
+ *
  * @return array, possibly empty
  */
-function _mailchimptemplate_civix_glob($pattern) {
-  $result = glob($pattern);
-  return is_array($result) ? $result : array();
+function _mailchimptemplate_civix_glob($pattern)
+{
+    $result = glob($pattern);
+    return is_array($result) ? $result : [];
 }
 
 /**
@@ -260,73 +275,78 @@ function _mailchimptemplate_civix_glob($pattern) {
  * @param string $path - path where insertion should happen (ie. Administer/System Settings)
  * @param array $item - menu you need to insert (parent/child attributes will be filled for you)
  */
-function _mailchimptemplate_civix_insert_navigation_menu(&$menu, $path, $item) {
-  // If we are done going down the path, insert menu
-  if (empty($path)) {
-    $menu[] = array(
-      'attributes' => array_merge(array(
-        'label'      => CRM_Utils_Array::value('name', $item),
-        'active'     => 1,
-      ), $item),
-    );
-    return TRUE;
-  }
-  else {
-    // Find an recurse into the next level down
-    $found = false;
-    $path = explode('/', $path);
-    $first = array_shift($path);
-    foreach ($menu as $key => &$entry) {
-      if ($entry['attributes']['name'] == $first) {
-        if (!$entry['child']) $entry['child'] = array();
-        $found = _mailchimptemplate_civix_insert_navigation_menu($entry['child'], implode('/', $path), $item, $key);
-      }
+function _mailchimptemplate_civix_insert_navigation_menu(&$menu, $path, $item)
+{
+    // If we are done going down the path, insert menu
+    if (empty($path)) {
+        $menu[] = [
+            'attributes' => array_merge([
+                'label' => CRM_Utils_Array::value('name', $item),
+                'active' => 1,
+            ], $item),
+        ];
+        return true;
+    } else {
+        // Find an recurse into the next level down
+        $found = false;
+        $path = explode('/', $path);
+        $first = array_shift($path);
+        foreach ($menu as $key => &$entry) {
+            if ($entry['attributes']['name'] == $first) {
+                if (!$entry['child']) {
+                    $entry['child'] = [];
+                }
+                $found = _mailchimptemplate_civix_insert_navigation_menu($entry['child'], implode('/', $path), $item, $key);
+            }
+        }
+        return $found;
     }
-    return $found;
-  }
 }
 
 /**
  * (Delegated) Implements hook_civicrm_navigationMenu().
  */
-function _mailchimptemplate_civix_navigationMenu(&$nodes) {
-  if (!is_callable(array('CRM_Core_BAO_Navigation', 'fixNavigationMenu'))) {
-    _mailchimptemplate_civix_fixNavigationMenu($nodes);
-  }
+function _mailchimptemplate_civix_navigationMenu(&$nodes)
+{
+    if (!is_callable(['CRM_Core_BAO_Navigation', 'fixNavigationMenu'])) {
+        _mailchimptemplate_civix_fixNavigationMenu($nodes);
+    }
 }
 
 /**
  * Given a navigation menu, generate navIDs for any items which are
  * missing them.
  */
-function _mailchimptemplate_civix_fixNavigationMenu(&$nodes) {
-  $maxNavID = 1;
-  array_walk_recursive($nodes, function($item, $key) use (&$maxNavID) {
-    if ($key === 'navID') {
-      $maxNavID = max($maxNavID, $item);
-    }
+function _mailchimptemplate_civix_fixNavigationMenu(&$nodes)
+{
+    $maxNavID = 1;
+    array_walk_recursive($nodes, function ($item, $key) use (&$maxNavID) {
+        if ($key === 'navID') {
+            $maxNavID = max($maxNavID, $item);
+        }
     });
-  _mailchimptemplate_civix_fixNavigationMenuItems($nodes, $maxNavID, NULL);
+    _mailchimptemplate_civix_fixNavigationMenuItems($nodes, $maxNavID, null);
 }
 
-function _mailchimptemplate_civix_fixNavigationMenuItems(&$nodes, &$maxNavID, $parentID) {
-  $origKeys = array_keys($nodes);
-  foreach ($origKeys as $origKey) {
-    if (!isset($nodes[$origKey]['attributes']['parentID']) && $parentID !== NULL) {
-      $nodes[$origKey]['attributes']['parentID'] = $parentID;
+function _mailchimptemplate_civix_fixNavigationMenuItems(&$nodes, &$maxNavID, $parentID)
+{
+    $origKeys = array_keys($nodes);
+    foreach ($origKeys as $origKey) {
+        if (!isset($nodes[$origKey]['attributes']['parentID']) && $parentID !== null) {
+            $nodes[$origKey]['attributes']['parentID'] = $parentID;
+        }
+        // If no navID, then assign navID and fix key.
+        if (!isset($nodes[$origKey]['attributes']['navID'])) {
+            $newKey = ++$maxNavID;
+            $nodes[$origKey]['attributes']['navID'] = $newKey;
+            $nodes[$newKey] = $nodes[$origKey];
+            unset($nodes[$origKey]);
+            $origKey = $newKey;
+        }
+        if (isset($nodes[$origKey]['child']) && is_array($nodes[$origKey]['child'])) {
+            _mailchimptemplate_civix_fixNavigationMenuItems($nodes[$origKey]['child'], $maxNavID, $nodes[$origKey]['attributes']['navID']);
+        }
     }
-    // If no navID, then assign navID and fix key.
-    if (!isset($nodes[$origKey]['attributes']['navID'])) {
-      $newKey = ++$maxNavID;
-      $nodes[$origKey]['attributes']['navID'] = $newKey;
-      $nodes[$newKey] = $nodes[$origKey];
-      unset($nodes[$origKey]);
-      $origKey = $newKey;
-    }
-    if (isset($nodes[$origKey]['child']) && is_array($nodes[$origKey]['child'])) {
-      _mailchimptemplate_civix_fixNavigationMenuItems($nodes[$origKey]['child'], $maxNavID, $nodes[$origKey]['attributes']['navID']);
-    }
-  }
 }
 
 /**
@@ -334,15 +354,16 @@ function _mailchimptemplate_civix_fixNavigationMenuItems(&$nodes, &$maxNavID, $p
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_alterSettingsFolders
  */
-function _mailchimptemplate_civix_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) {
-  static $configured = FALSE;
-  if ($configured) {
-    return;
-  }
-  $configured = TRUE;
+function _mailchimptemplate_civix_civicrm_alterSettingsFolders(&$metaDataFolders = null)
+{
+    static $configured = false;
+    if ($configured) {
+        return;
+    }
+    $configured = true;
 
-  $settingsDir = __DIR__ . DIRECTORY_SEPARATOR . 'settings';
-  if(is_dir($settingsDir) && !in_array($settingsDir, $metaDataFolders)) {
-    $metaDataFolders[] = $settingsDir;
-  }
+    $settingsDir = __DIR__.DIRECTORY_SEPARATOR.'settings';
+    if (is_dir($settingsDir) && !in_array($settingsDir, $metaDataFolders)) {
+        $metaDataFolders[] = $settingsDir;
+    }
 }
