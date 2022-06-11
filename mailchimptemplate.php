@@ -1,5 +1,7 @@
 <?php
 
+use CRM_Mailchimptemplate_ExtensionUtil as E;
+
 require_once 'mailchimptemplate.civix.php';
 
 /**
@@ -102,7 +104,7 @@ function mailchimptemplate_civicrm_navigationMenu(&$params)
     $parentID = CRM_Core_DAO::getFieldValue('CRM_Core_DAO_Navigation', 'Mailings', 'id', 'name');
     $params[$parentID]['child'][$navID] = [
         'attributes' => [
-            'label' => ts('Mailchimp Campaign Import'),
+            'label' => E::ts('Mailchimp Campaign Import'),
             'name' => 'Mailchimp Campaign Import',
             'url' => 'civicrm/mailchimptemplate',
             'permission' => 'access CiviMail',
@@ -113,6 +115,18 @@ function mailchimptemplate_civicrm_navigationMenu(&$params)
             'active' => 1,
         ],
     ];
+
+    // Settings menu
+    _mailchimptemplate_civix_insert_navigation_menu($params, 'Administer/CiviMail', [
+        'label' => E::ts('MailChimp Settings'),
+        'name' => 'MailChimp Settings',
+        'url' => 'civicrm/admin/setting/mailchimp',
+        'permission' => 'administer CiviCRM',
+        'operator' => 'OR',
+        'separator' => 0,
+        'active' => 1
+    ]);
+
 }
 
 /**
