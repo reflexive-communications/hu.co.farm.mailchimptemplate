@@ -16,7 +16,7 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplate extends CRM_Core_Form
 
     public function __construct()
     {
-        $apikey = 'xxxxxxxxxxxxxxxxxxx-xxx';
+        $apikey = CRM_Mailchimptemplate_Settings::getApikey();
         $this->MailChimp = new MailChimp($apikey);
         parent::__construct();
     }
