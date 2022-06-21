@@ -120,13 +120,18 @@ function mailchimptemplate_civicrm_navigationMenu(&$params)
     _mailchimptemplate_civix_insert_navigation_menu($params, 'Administer/CiviMail', [
         'label' => E::ts('MailChimp Settings'),
         'name' => 'MailChimp Settings',
-        'url' => 'civicrm/admin/setting/mailchimp',
+        'url' => 'civicrm/mailchimptemplate/settings',
         'permission' => 'administer CiviCRM',
         'operator' => 'OR',
         'separator' => 0,
         'active' => 1
     ]);
 
+    _mailchimptemplate_civix_navigationMenu($params);
+}
+
+function mailchimptemplate_civicrm_xmlMenu(&$files) {
+    $files[] = dirname(__FILE__) . '/xml/Menu/mailchimptemplate.xml';
 }
 
 /**
@@ -134,8 +139,9 @@ function mailchimptemplate_civicrm_navigationMenu(&$params)
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_postInstall
  */
-function mailchimptemplate_civicrm_postInstall() {
-  _mailchimptemplate_civix_civicrm_postInstall();
+function mailchimptemplate_civicrm_postInstall()
+{
+    _mailchimptemplate_civix_civicrm_postInstall();
 }
 
 /**
@@ -143,6 +149,7 @@ function mailchimptemplate_civicrm_postInstall() {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_entityTypes
  */
-function mailchimptemplate_civicrm_entityTypes(&$entityTypes) {
-  _mailchimptemplate_civix_civicrm_entityTypes($entityTypes);
+function mailchimptemplate_civicrm_entityTypes(&$entityTypes)
+{
+    _mailchimptemplate_civix_civicrm_entityTypes($entityTypes);
 }

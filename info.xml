@@ -1,30 +1,30 @@
 <?xml version="1.0"?>
 <extension key="hu.co.farm.mailchimptemplate" type="module">
-  <file>mailchimptemplate</file>
-  <name>Mailchimp Template Import</name>
-  <description>Imports Mailchimp templates</description>
-  <license>AGPL-3.0</license>
-  <maintainer>
-    <author>Sandor Semsey</author>
-    <email>sandor@es-progress.hu</email>
-  </maintainer>
-  <urls>
-    <url desc="Main Extension Page">https://github.com/reflexive-communications/hu.co.farm.mailchimptemplate</url>
-    <url desc="Documentation">https://github.com/reflexive-communications/hu.co.farm.mailchimptemplate</url>
-    <url desc="Support">https://github.com/reflexive-communications/hu.co.farm.mailchimptemplate/issues</url>
-    <url desc="Licensing">https://www.gnu.org/licenses/agpl-3.0.html</url>
-  </urls>
-  <releaseDate>2022-02-08</releaseDate>
-  <version>1.2.0</version>
-  <develStage>stable</develStage>
-  <compatibility>
-    <ver>5.0</ver>
-  </compatibility>
-  <civix>
-    <namespace>CRM/Mailchimptemplate</namespace>
-    <format>22.05.2</format>
-  </civix>
-  <mixins>
-    <mixin>menu-xml@1.0.0</mixin>
-  </mixins>
+    <file>mailchimptemplate</file>
+    <name>Mailchimp Template Import</name>
+    <description>Imports Mailchimp templates</description>
+    <license>AGPL-3.0</license>
+    <maintainer>
+        <author>Sandor Semsey</author>
+        <email>sandor@es-progress.hu</email>
+    </maintainer>
+    <urls>
+        <url desc="Main Extension Page">https://github.com/reflexive-communications/hu.co.farm.mailchimptemplate</url>
+        <url desc="Documentation">https://github.com/reflexive-communications/hu.co.farm.mailchimptemplate</url>
+        <url desc="Support">https://github.com/reflexive-communications/hu.co.farm.mailchimptemplate/issues</url>
+        <url desc="Licensing">https://www.gnu.org/licenses/agpl-3.0.html</url>
+    </urls>
+    <releaseDate>2022-02-08</releaseDate>
+    <version>1.2.0</version>
+    <develStage>stable</develStage>
+    <compatibility>
+        <ver>5.47</ver>
+    </compatibility>
+    <civix>
+        <namespace>CRM/Mailchimptemplate</namespace>
+        <format>22.05.2</format>
+    </civix>
+    <requires>
+        <ext>rc-base</ext>
+    </requires>
 </extension>

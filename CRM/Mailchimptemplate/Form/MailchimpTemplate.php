@@ -101,7 +101,7 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplate extends CRM_Core_Form
         );
         // dpm($result, 'mailing result');
 
-        CRM_Utils_System::redirect('/civicrm/a#/mailing/'.$result['id']);
+        CRM_Utils_System::redirect('/civicrm/a#/mailing/' . $result['id']);
 
         // CRM_Core_Session::setStatus(ts('You picked campaign "%1"', array(
         //   1 => $options[$values['campaign']]
