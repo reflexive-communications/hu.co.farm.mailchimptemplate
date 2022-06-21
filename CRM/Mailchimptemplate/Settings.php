@@ -2,7 +2,6 @@
 
 class CRM_Mailchimptemplate_Settings
 {
-
     private const SETTINGKEY = 'MailchimpTemplate_apikey';
     public const ELFIELDNAME = 'apikey';
 
