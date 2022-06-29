@@ -24,6 +24,9 @@
         <namespace>CRM/Mailchimptemplate</namespace>
         <format>22.05.2</format>
     </civix>
+    <mixins>
+        <mixin>menu-xml@1.0.0</mixin>
+    </mixins>
     <requires>
         <ext>rc-base</ext>
     </requires>

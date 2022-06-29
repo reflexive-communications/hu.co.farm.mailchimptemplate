@@ -130,11 +130,6 @@ function mailchimptemplate_civicrm_navigationMenu(&$params)
     _mailchimptemplate_civix_navigationMenu($params);
 }
 
-function mailchimptemplate_civicrm_xmlMenu(&$files)
-{
-    $files[] = dirname(__FILE__) . '/xml/Menu/mailchimptemplate.xml';
-}
-
 /**
  * Implements hook_civicrm_postInstall().
  *
