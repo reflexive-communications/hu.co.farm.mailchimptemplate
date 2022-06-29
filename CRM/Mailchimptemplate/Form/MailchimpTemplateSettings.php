@@ -1,8 +1,5 @@
 <?php
 
-require_once 'CRM/Core/Form.php';
-require_once 'vendor/MailChimp.php';
-
 use CRM_Mailchimptemplate_ExtensionUtil as E;
 
 /**
