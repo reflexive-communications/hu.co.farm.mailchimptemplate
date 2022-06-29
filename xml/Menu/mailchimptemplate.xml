@@ -3,13 +3,13 @@
     <item>
         <path>civicrm/mailchimptemplate</path>
         <page_callback>CRM_Mailchimptemplate_Form_MailchimpTemplate</page_callback>
-        <title>MailchimpTemplate</title>
+        <title>Mailchimp Template</title>
         <access_arguments>access CiviMail</access_arguments>
     </item>
     <item>
         <path>civicrm/mailchimptemplate/settings</path>
         <page_callback>CRM_Mailchimptemplate_Form_MailchimpTemplateSettings</page_callback>
-        <title>MailchimpTemplateSettings</title>
+        <title>Mailchimp Template Settings</title>
         <access_arguments>administer CiviCRM</access_arguments>
     </item>
 </menu>
