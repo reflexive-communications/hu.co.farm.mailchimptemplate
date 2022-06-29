@@ -46,7 +46,8 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplateSettings extends CRM_Core_Form
 
     public function postProcess()
     {
-        CRM_Mailchimptemplate_Settings::setApikey($this->exportValue(CRM_Mailchimptemplate_Settings::ELFIELDNAME));
+        $sanitizedapikey = CRM_RcBase_Processor_Base::sanitizeString($this->exportValue(CRM_Mailchimptemplate_Settings::ELFIELDNAME));
+        CRM_Mailchimptemplate_Settings::setApikey($sanitizedapikey);
         CRM_Utils_System::redirect('/civicrm/admin');
     }
 
