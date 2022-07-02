@@ -4,6 +4,7 @@ require_once 'CRM/Core/Form.php';
 require_once 'vendor/MailChimp.php';
 
 use DrewM\MailChimp\MailChimp;
+use CRM_Mailchimptemplate_ExtensionUtil as E;
 
 /**
  * Form controller class
@@ -16,7 +17,7 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplate extends CRM_Core_Form
 
     public function __construct()
     {
-        $apikey = 'xxxxxxxxxxxxxxxxxxx-xxx';
+        $apikey = CRM_Mailchimptemplate_Settings::getApikey();
         $this->MailChimp = new MailChimp($apikey);
         parent::__construct();
     }
@@ -27,7 +28,7 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplate extends CRM_Core_Form
         $this->add(
             'select', // field type
             'campaign', // field name
-            'Campaign to import', // field label
+            E::ts('Campaign to import'), // field label
             $this->getCampaigns(), // list of options
             true // is required
         );
@@ -35,7 +36,7 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplate extends CRM_Core_Form
             array(
                 array(
                     'type' => 'submit',
-                    'name' => ts('Submit'),
+                    'name' => E::ts('Submit'),
                     'isDefault' => true,
                 ),
             )
@@ -100,7 +101,7 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplate extends CRM_Core_Form
         );
         // dpm($result, 'mailing result');
 
-        CRM_Utils_System::redirect('/civicrm/a#/mailing/'.$result['id']);
+        CRM_Utils_System::redirect('/civicrm/a#/mailing/' . $result['id']);
 
         // CRM_Core_Session::setStatus(ts('You picked campaign "%1"', array(
         //   1 => $options[$values['campaign']]
