@@ -18,6 +18,8 @@
             <!-- Skip generated files -->
             <file>./mailchimptemplate.php</file>
             <file>./mailchimptemplate.civix.php</file>
+            <!-- Skip vendor files -->
+            <directory>./vendor</directory>
         </exclude>
     </coverage>
     <testsuites>
