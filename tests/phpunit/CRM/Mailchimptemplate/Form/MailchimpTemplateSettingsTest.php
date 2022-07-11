@@ -38,16 +38,6 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplateSettingsTest extends TestCase 
             ->apply();
     }
 
-    public function setUp(): void
-    {
-        parent::setUp();
-    }
-
-    public function tearDown(): void
-    {
-        parent::tearDown();
-    }
-
     public function testPreProcess()
     {
         $form = new CRM_Mailchimptemplate_Form_MailchimpTemplateSettings();
@@ -63,7 +53,6 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplateSettingsTest extends TestCase 
 
     public function testPostProcess()
     {
-        $this->expectException(CRM_Core_Exception_PrematureExitException::class);
         $apikey = 'postprocess-apikey';
 
         $form = new CRM_Mailchimptemplate_Form_MailchimpTemplateSettings();
