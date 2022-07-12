@@ -38,6 +38,21 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplateSettingsTest extends TestCase 
             ->apply();
     }
 
+    /**
+     * Apply a forced rebuild of DB, thus
+     * create a clean DB before running tests
+     *
+     * @throws CRM_Extension_Exception_ParseException
+     */
+    public static function setUpBeforeClass(): void
+    {
+        // Resets DB and install depended extension
+        Test::headless()
+            ->install('rc-base')
+            ->installMe(__DIR__)
+            ->apply(true);
+    }
+
     public function testPreProcess()
     {
         $form = new CRM_Mailchimptemplate_Form_MailchimpTemplateSettings();
