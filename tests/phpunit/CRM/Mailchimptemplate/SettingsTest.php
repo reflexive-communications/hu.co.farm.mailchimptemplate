@@ -20,6 +20,21 @@ class CRM_Mailchimptemplate_SettingsTest extends TestCase implements HeadlessInt
     }
 
     /**
+     * Apply a forced rebuild of DB, thus
+     * create a clean DB before running tests
+     *
+     * @throws CRM_Extension_Exception_ParseException
+     */
+    public static function setUpBeforeClass(): void
+    {
+        // Resets DB and install depended extension
+        Test::headless()
+            ->install('rc-base')
+            ->installMe(__DIR__)
+            ->apply(true);
+    }
+
+    /**
      * Tests saving and loading settings
      */
     public function testSaveLoadApikey(): void
