@@ -48,7 +48,7 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplateSettings extends CRM_Core_Form
     {
         $sanitizedapikey = CRM_RcBase_Processor_Base::sanitizeString($this->exportValue(CRM_Mailchimptemplate_Settings::ELFIELDNAME));
         CRM_Mailchimptemplate_Settings::setApikey($sanitizedapikey);
-        CRM_Utils_System::redirect('/civicrm/admin');
+        CRM_Core_Session::setStatus(E::ts('Settings updated'), '', 'success', ['expires' => 5000,]);
     }
 
     /**

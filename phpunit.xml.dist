@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         convertDeprecationsToExceptions="true"
+         bootstrap="tests/phpunit/bootstrap.php"
+         testdox="true">
+    <coverage>
+        <include>
+            <directory suffix=".php">./</directory>
+        </include>
+        <exclude>
+            <!-- Skip test directory -->
+            <directory>./tests</directory>
+            <!-- Skip generated files -->
+            <file>./mailchimptemplate.php</file>
+            <file>./mailchimptemplate.civix.php</file>
+            <!-- Skip vendor files -->
+            <directory>./vendor</directory>
+        </exclude>
+    </coverage>
+    <testsuites>
+        <testsuite name="My Test Suite">
+            <directory>./tests/phpunit</directory>
+        </testsuite>
+    </testsuites>
+    <listeners>
+        <listener class="Civi\Test\CiviTestListener">
+            <arguments/>
+        </listener>
+    </listeners>
+</phpunit>

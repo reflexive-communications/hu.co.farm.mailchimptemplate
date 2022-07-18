@@ -22,5 +22,5 @@ cv en hu.co.farm.mailchimptemplate
 
 ## Usage
 
-Currently Mailchimp API key is hard-coded. You need to set it in `CRM_Mailchimptemplate_Form_MailchimpTemplate::contruct()`.
+Before use you need to set your Mailchimp API-key at **Administer >> CiviMail >> MailChimp Settings**.
 Then navigate to **Mailings >> Mailchimp Campaign Import** where you can select & import a mailing.
