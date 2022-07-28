@@ -26,20 +26,21 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplate extends CRM_Core_Form
     {
         // add form elements
         $this->add(
-            'select', // field type
-            'campaign', // field name
-            E::ts('Campaign to import'), // field label
-            $this->getCampaigns(), // list of options
-            true // is required
+            'select',
+            'campaign',
+            E::ts('Campaign to import'),
+            $this->getCampaigns(),
+            true,
+            ['class' => 'crm-select2',]
         );
         $this->addButtons(
-            array(
-                array(
+            [
+                [
                     'type' => 'submit',
                     'name' => E::ts('Submit'),
                     'isDefault' => true,
-                ),
-            )
+                ],
+            ]
         );
 
         // export form elements
@@ -79,7 +80,7 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplate extends CRM_Core_Form
             '',
             '',
             '',
-            ''
+            '',
         ];
 
         $html = str_replace($chimp_tokens, $civi_tokens, $content['html']);
@@ -90,18 +91,18 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplate extends CRM_Core_Form
         $result = civicrm_api3(
             'Mailing',
             'create',
-            array(
+            [
                 'sequential' => 1,
                 'created_id' => "user_contact_id",
                 'name' => $campaign['settings']['title'],
                 'subject' => $campaign['settings']['subject_line'],
                 'body_html' => $html,
                 'body_text' => $text,
-            )
+            ]
         );
         // dpm($result, 'mailing result');
 
-        CRM_Utils_System::redirect('/civicrm/a#/mailing/' . $result['id']);
+        CRM_Utils_System::redirect('/civicrm/a#/mailing/'.$result['id']);
 
         // CRM_Core_Session::setStatus(ts('You picked campaign "%1"', array(
         //   1 => $options[$values['campaign']]
@@ -144,7 +145,7 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplate extends CRM_Core_Form
         // auto-rendered in the loop -- such as "qfKey" and "buttons".  These
         // items don't have labels.  We'll identify renderable by filtering on
         // the 'label'.
-        $elementNames = array();
+        $elementNames = [];
         foreach ($this->_elements as $element) {
             /** @var HTML_QuickForm_Element $element */
             $label = $element->getLabel();
