@@ -18,7 +18,6 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplateSettingsTest extends TestCase 
     HookInterface,
     TransactionalInterface
 {
-
     /**
      * Setup used when HeadlessInterface is implemented.
      *
