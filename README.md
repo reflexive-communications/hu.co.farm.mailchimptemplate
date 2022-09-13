@@ -6,9 +6,9 @@ This extension imports mail templates from Mailchimp.
 
 ## Requirements
 
-* PHP v7.3+
-* CiviCRM (5.47)
-* rc-base v1.3.0+
+-   PHP v7.3+
+-   CiviCRM (5.47)
+-   rc-base v1.3.0+
 
 ## Installation (CLI, Git)
 
