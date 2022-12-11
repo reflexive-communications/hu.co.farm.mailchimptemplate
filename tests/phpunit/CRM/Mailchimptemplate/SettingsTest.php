@@ -5,18 +5,12 @@ use PHPUnit\Framework\TestCase;
 use Civi\Test\HeadlessInterface;
 
 /**
- * This is a generic test class for the extension (implemented with PHPUnit).
- *
  * @group headless
  */
 class CRM_Mailchimptemplate_SettingsTest extends TestCase implements HeadlessInterface
 {
     public function setUpHeadless()
     {
-        return Test::headless()
-            ->install('rc-base')
-            ->installMe(__DIR__)
-            ->apply();
     }
 
     /**
@@ -36,11 +30,26 @@ class CRM_Mailchimptemplate_SettingsTest extends TestCase implements HeadlessInt
 
     /**
      * Tests saving and loading settings
+     *
+     * @throws \Civi\RcBase\Exception\MissingArgumentException
+     * @throws \Civi\RcBase\Exception\DataBaseException
      */
     public function testSaveLoadApikey(): void
     {
         $testApiKey = 'test-apikey';
         CRM_Mailchimptemplate_Settings::setApikey($testApiKey);
         self::assertEquals($testApiKey, CRM_Mailchimptemplate_Settings::getApikey(), 'Loaded "apikey" has to be equal with saved "apikey".');
+
+        // Add new encryption key & rotate API key
+        Civi::service('crypto.registry')->addSymmetricKey([
+            'key' => '12345678901234567890123456789012',
+            'suite' => 'aes-cbc',
+            'tags' => ['CRED'],
+            'weight' => -1,
+        ]);
+        $key_raw = Civi::settings()->get(CRM_Mailchimptemplate_Settings::SETTINGKEY);
+        CRM_Mailchimptemplate_Settings::rotateApikey();
+        $key_raw_rekeyed = Civi::settings()->get(CRM_Mailchimptemplate_Settings::SETTINGKEY);
+        self::assertNotSame($key_raw, $key_raw_rekeyed, 'API key not rotated');
     }
 }

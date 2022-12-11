@@ -1,8 +1,11 @@
 <?php
 
+use Civi\RcBase\Settings;
+
 class CRM_Mailchimptemplate_Settings
 {
-    private const SETTINGKEY = 'MailchimpTemplate_apikey';
+    public const SETTINGKEY = 'MailchimpTemplate_apikey';
+
     public const ELFIELDNAME = 'apikey';
 
     public static function getApikey()
@@ -13,5 +16,17 @@ class CRM_Mailchimptemplate_Settings
     public static function setApikey($value)
     {
         CRM_RcBase_Setting::saveSecret(self::SETTINGKEY, $value);
+    }
+
+    /**
+     * Re-encrypt API key with new credential key
+     *
+     * @return void
+     * @throws \Civi\RcBase\Exception\DataBaseException
+     * @throws \Civi\RcBase\Exception\MissingArgumentException
+     */
+    public static function rotateApikey(): void
+    {
+        Settings::rotateSecret(self::SETTINGKEY);
     }
 }
