@@ -21,7 +21,7 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplateSettings extends CRM_Core_Form
     {
         // add form elements
         $this->add(
-            'text', // field type
+            'password', // field type
             CRM_Mailchimptemplate_Settings::ELFIELDNAME, // field name
             E::ts('MailChimp API key'), // field label
             null, // list of options

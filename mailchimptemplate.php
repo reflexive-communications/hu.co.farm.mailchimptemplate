@@ -149,3 +149,22 @@ function mailchimptemplate_civicrm_entityTypes(&$entityTypes)
 {
     _mailchimptemplate_civix_civicrm_entityTypes($entityTypes);
 }
+
+/**
+ * Implements hook_civicrm_cryptoRotateKey().
+ *
+ * @param $tag
+ * @param $log
+ *
+ * @return void
+ * @throws \Civi\RcBase\Exception\DataBaseException
+ * @throws \Civi\RcBase\Exception\MissingArgumentException
+ */
+function mailchimptemplate_civicrm_cryptoRotateKey($tag, $log)
+{
+    if ($tag !== 'CRED') {
+        return;
+    }
+    CRM_Mailchimptemplate_Settings::rotateApikey();
+    $log->info(E::LONG_NAME.': Successful re-keying');
+}
