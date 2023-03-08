@@ -20,13 +20,10 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplateSettingsTest extends TestCase 
 {
     /**
      * Setup used when HeadlessInterface is implemented.
-     *
      * Civi\Test has many helpers, like install(), uninstall(), sql(), and sqlFile().
      *
      * @link https://github.com/civicrm/org.civicrm.testapalooza/blob/master/civi-test.md
-     *
      * @return CiviEnvBuilder
-     *
      * @throws CRM_Extension_Exception_ParseException
      */
     public function setUpHeadless(): CiviEnvBuilder
@@ -74,7 +71,7 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplateSettingsTest extends TestCase 
         $form->buildQuickForm();
 
         $submitValues = [
-            CRM_Mailchimptemplate_Settings::ELFIELDNAME => $apikey
+            CRM_Mailchimptemplate_Settings::ELFIELDNAME => $apikey,
         ];
         $form->setVar('_submitValues', $submitValues);
         $this->assertEmpty($form->postProcess());
