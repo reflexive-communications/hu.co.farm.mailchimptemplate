@@ -9,18 +9,20 @@
 class CRM_Mailchimptemplate_ExtensionUtil
 {
     const SHORT_NAME = 'mailchimptemplate';
+
     const LONG_NAME = 'hu.co.farm.mailchimptemplate';
+
     const CLASS_PREFIX = 'CRM_Mailchimptemplate';
 
     /**
      * Translate a string using the extension's domain.
-     *
      * If the extension doesn't have a specific translation
      * for the string, fallback to the default translations.
      *
      * @param string $text
      *   Canonical message text (generally en_US).
      * @param array $params
+     *
      * @return string
      *   Translated text.
      * @see ts
@@ -30,6 +32,7 @@ class CRM_Mailchimptemplate_ExtensionUtil
         if (!array_key_exists('domain', $params)) {
             $params['domain'] = [self::LONG_NAME, null];
         }
+
         return ts($text, $params);
     }
 
@@ -39,6 +42,7 @@ class CRM_Mailchimptemplate_ExtensionUtil
      * @param string|NULL $file
      *   Ex: NULL.
      *   Ex: 'css/foo.css'.
+     *
      * @return string
      *   Ex: 'http://example.org/sites/default/ext/org.example.foo'.
      *   Ex: 'http://example.org/sites/default/ext/org.example.foo/css/foo.css'.
@@ -48,6 +52,7 @@ class CRM_Mailchimptemplate_ExtensionUtil
         if ($file === null) {
             return rtrim(CRM_Core_Resources::singleton()->getUrl(self::LONG_NAME), '/');
         }
+
         return CRM_Core_Resources::singleton()->getUrl(self::LONG_NAME, $file);
     }
 
@@ -57,6 +62,7 @@ class CRM_Mailchimptemplate_ExtensionUtil
      * @param string|NULL $file
      *   Ex: NULL.
      *   Ex: 'css/foo.css'.
+     *
      * @return string
      *   Ex: '/var/www/example.org/sites/default/ext/org.example.foo'.
      *   Ex: '/var/www/example.org/sites/default/ext/org.example.foo/css/foo.css'.
@@ -64,7 +70,7 @@ class CRM_Mailchimptemplate_ExtensionUtil
     public static function path($file = null)
     {
         // return CRM_Core_Resources::singleton()->getPath(self::LONG_NAME, $file);
-        return __DIR__ . ($file === null ? '' : (DIRECTORY_SEPARATOR . $file));
+        return __DIR__.($file === null ? '' : (DIRECTORY_SEPARATOR.$file));
     }
 
     /**
@@ -72,12 +78,13 @@ class CRM_Mailchimptemplate_ExtensionUtil
      *
      * @param string $suffix
      *   Ex: 'Page_HelloWorld' or 'Page\\HelloWorld'.
+     *
      * @return string
      *   Ex: 'CRM_Foo_Page_HelloWorld'.
      */
     public static function findClass($suffix)
     {
-        return self::CLASS_PREFIX . '_' . str_replace('\\', '_', $suffix);
+        return self::CLASS_PREFIX.'_'.str_replace('\\', '_', $suffix);
     }
 }
 
@@ -98,8 +105,8 @@ function _mailchimptemplate_civix_civicrm_config(&$config = null)
 
     $template = CRM_Core_Smarty::singleton();
 
-    $extRoot = __DIR__ . DIRECTORY_SEPARATOR;
-    $extDir = $extRoot . 'templates';
+    $extRoot = __DIR__.DIRECTORY_SEPARATOR;
+    $extDir = $extRoot.'templates';
 
     if (is_array($template->template_dir)) {
         array_unshift($template->template_dir, $extDir);
@@ -107,7 +114,7 @@ function _mailchimptemplate_civix_civicrm_config(&$config = null)
         $template->template_dir = [$extDir, $template->template_dir];
     }
 
-    $include_path = $extRoot . PATH_SEPARATOR . get_include_path();
+    $include_path = $extRoot.PATH_SEPARATOR.get_include_path();
     set_include_path($include_path);
 }
 
@@ -192,7 +199,6 @@ function _mailchimptemplate_civix_civicrm_disable()
  * @return mixed
  *   based on op. for 'check', returns array(boolean) (TRUE if upgrades are pending)
  *   for 'enqueue', returns void
- *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_upgrade
  */
 function _mailchimptemplate_civix_civicrm_upgrade($op, CRM_Queue_Queue $queue = null)
@@ -207,7 +213,7 @@ function _mailchimptemplate_civix_civicrm_upgrade($op, CRM_Queue_Queue $queue = 
  */
 function _mailchimptemplate_civix_upgrader()
 {
-    if (!file_exists(__DIR__ . '/CRM/Mailchimptemplate/Upgrader.php')) {
+    if (!file_exists(__DIR__.'/CRM/Mailchimptemplate/Upgrader.php')) {
         return null;
     } else {
         return CRM_Mailchimptemplate_Upgrader_Base::instance();
@@ -231,10 +237,11 @@ function _mailchimptemplate_civix_insert_navigation_menu(&$menu, $path, $item)
     if (empty($path)) {
         $menu[] = [
             'attributes' => array_merge([
-                                            'label' => CRM_Utils_Array::value('name', $item),
-                                            'active' => 1,
-                                        ], $item),
+                'label' => CRM_Utils_Array::value('name', $item),
+                'active' => 1,
+            ], $item),
         ];
+
         return true;
     } else {
         // Find an recurse into the next level down
@@ -249,6 +256,7 @@ function _mailchimptemplate_civix_insert_navigation_menu(&$menu, $path, $item)
                 $found = _mailchimptemplate_civix_insert_navigation_menu($entry['child'], implode('/', $path), $item);
             }
         }
+
         return $found;
     }
 }
@@ -301,7 +309,6 @@ function _mailchimptemplate_civix_fixNavigationMenuItems(&$nodes, &$maxNavID, $p
 
 /**
  * (Delegated) Implements hook_civicrm_entityTypes().
- *
  * Find any *.entityType.php files, merge their content, and return.
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_entityTypes

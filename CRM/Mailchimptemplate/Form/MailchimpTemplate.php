@@ -31,7 +31,7 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplate extends CRM_Core_Form
             E::ts('Campaign to import'),
             $this->getCampaigns(),
             true,
-            ['class' => 'crm-select2',]
+            ['class' => 'crm-select2']
         );
         $this->addButtons(
             [

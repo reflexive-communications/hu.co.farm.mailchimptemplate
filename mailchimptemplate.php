@@ -63,7 +63,6 @@ function mailchimptemplate_civicrm_disable()
  * @return mixed
  *   Based on op. for 'check', returns array(boolean) (TRUE if upgrades are pending)
  *                for 'enqueue', returns void
- *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_upgrade
  */
 function mailchimptemplate_civicrm_upgrade($op, CRM_Queue_Queue $queue = null)
@@ -75,9 +74,7 @@ function mailchimptemplate_civicrm_upgrade($op, CRM_Queue_Queue $queue = null)
  * Implements hook_civicrm_preProcess().
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_preProcess
- *
  * function mailchimptemplate_civicrm_preProcess($formName, &$form) {
- *
  * } // */
 
 /**
@@ -124,7 +121,7 @@ function mailchimptemplate_civicrm_navigationMenu(&$params)
         'permission' => 'administer CiviCRM',
         'operator' => 'OR',
         'separator' => 0,
-        'active' => 1
+        'active' => 1,
     ]);
 
     _mailchimptemplate_civix_navigationMenu($params);
