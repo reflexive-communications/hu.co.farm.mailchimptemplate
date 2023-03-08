@@ -23,14 +23,18 @@
     <compatibility>
         <ver>5.47</ver>
     </compatibility>
-    <civix>
-        <namespace>CRM/Mailchimptemplate</namespace>
-        <format>22.05.2</format>
-    </civix>
-    <mixins>
-        <mixin>menu-xml@1.0.0</mixin>
-    </mixins>
     <requires>
         <ext>rc-base</ext>
     </requires>
+    <classloader>
+        <psr0 prefix="CRM_" path="."/>
+        <psr4 prefix="Civi\" path="Civi"/>
+    </classloader>
+    <mixins>
+        <mixin>menu-xml@1.0.0</mixin>
+    </mixins>
+    <civix>
+        <namespace>CRM/Mailchimptemplate</namespace>
+        <format>22.12.1</format>
+    </civix>
 </extension>
