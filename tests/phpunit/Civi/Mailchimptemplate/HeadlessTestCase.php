@@ -3,8 +3,8 @@
 namespace Civi\Mailchimptemplate;
 
 use Civi\Test;
-use PHPUnit\Framework\TestCase;
 use Civi\Test\HeadlessInterface;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group headless
@@ -19,7 +19,7 @@ class HeadlessTestCase extends TestCase implements HeadlessInterface
      */
     public static function setUpBeforeClass(): void
     {
-        // Resets DB and install depended extension
+        // Resets DB
         Test::headless()
             ->install('rc-base')
             ->installMe(__DIR__)
