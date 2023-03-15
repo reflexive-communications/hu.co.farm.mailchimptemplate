@@ -3,8 +3,6 @@
 use Civi\Mailchimptemplate\HeadlessTestCase;
 
 /**
- * Test for the settings form
- *
  * @group headless
  */
 class CRM_Mailchimptemplate_Form_MailchimpTemplateSettingsTest extends HeadlessTestCase
