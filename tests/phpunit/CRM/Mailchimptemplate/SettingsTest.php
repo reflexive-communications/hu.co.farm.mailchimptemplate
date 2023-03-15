@@ -1,33 +1,12 @@
 <?php
 
-use Civi\Test;
-use PHPUnit\Framework\TestCase;
-use Civi\Test\HeadlessInterface;
+use Civi\Mailchimptemplate\HeadlessTestCase;
 
 /**
  * @group headless
  */
-class CRM_Mailchimptemplate_SettingsTest extends TestCase implements HeadlessInterface
+class CRM_Mailchimptemplate_SettingsTest extends HeadlessTestCase
 {
-    public function setUpHeadless()
-    {
-    }
-
-    /**
-     * Apply a forced rebuild of DB, thus
-     * create a clean DB before running tests
-     *
-     * @throws CRM_Extension_Exception_ParseException
-     */
-    public static function setUpBeforeClass(): void
-    {
-        // Resets DB and install depended extension
-        Test::headless()
-            ->install('rc-base')
-            ->installMe(__DIR__)
-            ->apply(true);
-    }
-
     /**
      * Tests saving and loading settings
      *
