@@ -1,15 +1,15 @@
 <?php
 
-use CRM_Mailchimptemplate_ExtensionUtil as E;
-
 require_once 'mailchimptemplate.civix.php';
+
+use CRM_Mailchimptemplate_ExtensionUtil as E;
 
 /**
  * Implements hook_civicrm_config().
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_config
  */
-function mailchimptemplate_civicrm_config(&$config)
+function mailchimptemplate_civicrm_config(&$config): void
 {
     _mailchimptemplate_civix_civicrm_config($config);
 }
@@ -19,7 +19,7 @@ function mailchimptemplate_civicrm_config(&$config)
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_navigationMenu
  */
-function mailchimptemplate_civicrm_navigationMenu(&$params)
+function mailchimptemplate_civicrm_navigationMenu(&$params): void
 {
     require_once('CRM/Core/BAO/Navigation.php');
     // Check that our item doesn't already exist
@@ -74,7 +74,7 @@ function mailchimptemplate_civicrm_navigationMenu(&$params)
  * @throws \Civi\RcBase\Exception\DataBaseException
  * @throws \Civi\RcBase\Exception\MissingArgumentException
  */
-function mailchimptemplate_civicrm_cryptoRotateKey($tag, $log)
+function mailchimptemplate_civicrm_cryptoRotateKey($tag, $log): void
 {
     if ($tag !== 'CRED') {
         return;
