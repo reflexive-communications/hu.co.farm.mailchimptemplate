@@ -1,54 +1,12 @@
 <?php
 
-use Civi\Test;
-use CRM_Mailchimptemplate_ExtensionUtil as E;
-use Civi\Test\HeadlessInterface;
-use Civi\Test\HookInterface;
-use Civi\Test\TransactionalInterface;
-use Civi\Test\CiviEnvBuilder;
-use PHPUnit\Framework\TestCase;
+use Civi\Mailchimptemplate\HeadlessTestCase;
 
 /**
- * Test for the settings form
- *
  * @group headless
  */
-class CRM_Mailchimptemplate_Form_MailchimpTemplateSettingsTest extends TestCase implements
-    HeadlessInterface,
-    HookInterface,
-    TransactionalInterface
+class CRM_Mailchimptemplate_Form_MailchimpTemplateSettingsTest extends HeadlessTestCase
 {
-    /**
-     * Setup used when HeadlessInterface is implemented.
-     * Civi\Test has many helpers, like install(), uninstall(), sql(), and sqlFile().
-     *
-     * @link https://github.com/civicrm/org.civicrm.testapalooza/blob/master/civi-test.md
-     * @return CiviEnvBuilder
-     * @throws CRM_Extension_Exception_ParseException
-     */
-    public function setUpHeadless(): CiviEnvBuilder
-    {
-        return Test::headless()
-            ->install('rc-base')
-            ->installMe(__DIR__)
-            ->apply();
-    }
-
-    /**
-     * Apply a forced rebuild of DB, thus
-     * create a clean DB before running tests
-     *
-     * @throws CRM_Extension_Exception_ParseException
-     */
-    public static function setUpBeforeClass(): void
-    {
-        // Resets DB and install depended extension
-        Test::headless()
-            ->install('rc-base')
-            ->installMe(__DIR__)
-            ->apply(true);
-    }
-
     public function testPreProcess()
     {
         $form = new CRM_Mailchimptemplate_Form_MailchimpTemplateSettings();
