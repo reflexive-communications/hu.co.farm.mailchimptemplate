@@ -8,12 +8,12 @@ class CRM_Mailchimptemplate_Settings
 
     public const ELFIELDNAME = 'apikey';
 
-    public static function getApikey()
+    public static function getApikey(): ?string
     {
         return CRM_RcBase_Setting::get(self::SETTINGKEY);
     }
 
-    public static function setApikey($value)
+    public static function setApikey($value): void
     {
         CRM_RcBase_Setting::saveSecret(self::SETTINGKEY, $value);
     }
