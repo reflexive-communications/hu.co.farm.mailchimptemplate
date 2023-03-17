@@ -8,10 +8,8 @@ use Civi\Mailchimptemplate\HeadlessTestCase;
 class CRM_Mailchimptemplate_SettingsTest extends HeadlessTestCase
 {
     /**
-     * Tests saving and loading settings
-     *
      * @throws \Civi\RcBase\Exception\MissingArgumentException
-     * @throws \Civi\RcBase\Exception\DataBaseException
+     * @throws \Civi\RcBase\Exception\DataBaseException|\CRM_Core_Exception
      */
     public function testSaveLoadApikey(): void
     {

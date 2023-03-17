@@ -12,8 +12,14 @@ use DrewM\MailChimp\MailChimp;
  */
 class CRM_Mailchimptemplate_Form_MailchimpTemplate extends CRM_Core_Form
 {
-    private $MailChimp = null;
+    /**
+     * @var \DrewM\MailChimp\MailChimp
+     */
+    private MailChimp $MailChimp;
 
+    /**
+     * @throws \Exception
+     */
     public function __construct()
     {
         $apikey = CRM_Mailchimptemplate_Settings::getApikey();
@@ -21,6 +27,10 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplate extends CRM_Core_Form
         parent::__construct();
     }
 
+    /**
+     * @return void
+     * @throws \CRM_Core_Exception
+     */
     public function buildQuickForm(): void
     {
         // add form elements
@@ -47,6 +57,10 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplate extends CRM_Core_Form
         parent::buildQuickForm();
     }
 
+    /**
+     * @return void
+     * @throws \CiviCRM_API3_Exception
+     */
     public function postProcess(): void
     {
         $values = $this->exportValues();
@@ -103,6 +117,9 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplate extends CRM_Core_Form
         CRM_Utils_System::redirect('/civicrm/a#/mailing/'.$result['id']);
     }
 
+    /**
+     * @return array
+     */
     public function getCampaigns(): array
     {
         $limit = 999;

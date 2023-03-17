@@ -9,14 +9,25 @@ use CRM_Mailchimptemplate_ExtensionUtil as E;
  */
 class CRM_Mailchimptemplate_Form_MailchimpTemplateSettings extends CRM_Core_Form
 {
-    private $apikey = null;
+    /**
+     * @var string|null
+     */
+    private ?string $apikey;
 
+    /**
+     * @return void
+     * @throws \CRM_Core_Exception
+     */
     public function preProcess(): void
     {
         parent::preProcess();
         $this->apikey = CRM_Mailchimptemplate_Settings::getApikey();
     }
 
+    /**
+     * @return void
+     * @throws \CRM_Core_Exception
+     */
     public function buildQuickForm(): void
     {
         // add form elements
@@ -44,6 +55,10 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplateSettings extends CRM_Core_Form
         parent::buildQuickForm();
     }
 
+    /**
+     * @return void
+     * @throws \CRM_Core_Exception
+     */
     public function postProcess(): void
     {
         $sanitizedapikey = CRM_RcBase_Processor_Base::sanitizeString($this->exportValue(CRM_Mailchimptemplate_Settings::ELFIELDNAME));
