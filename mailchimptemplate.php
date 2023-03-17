@@ -30,7 +30,7 @@ function mailchimptemplate_civicrm_navigationMenu(&$params): void
         return;
     }
 
-    $navID = CRM_Core_DAO::singleValueQuery("SELECT max(id) FROM civicrm_navigation");
+    $navID = CRM_Core_DAO::singleValueQuery('SELECT max(id) FROM civicrm_navigation');
     $navID = intval($navID);
     $navID += 100; // this is weird stuff, if it's 1, it's overwriting sendgrid's
 

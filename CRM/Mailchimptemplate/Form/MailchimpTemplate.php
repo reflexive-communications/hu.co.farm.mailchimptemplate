@@ -106,7 +106,7 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplate extends CRM_Core_Form
             'create',
             [
                 'sequential' => 1,
-                'created_id' => "user_contact_id",
+                'created_id' => 'user_contact_id',
                 'name' => $campaign['settings']['title'],
                 'subject' => $campaign['settings']['subject_line'],
                 'body_html' => $html,
