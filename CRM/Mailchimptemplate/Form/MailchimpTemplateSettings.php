@@ -9,15 +9,26 @@ use CRM_Mailchimptemplate_ExtensionUtil as E;
  */
 class CRM_Mailchimptemplate_Form_MailchimpTemplateSettings extends CRM_Core_Form
 {
-    private $apikey = null;
+    /**
+     * @var string|null
+     */
+    private ?string $apikey;
 
-    public function preProcess()
+    /**
+     * @return void
+     * @throws \CRM_Core_Exception
+     */
+    public function preProcess(): void
     {
         parent::preProcess();
         $this->apikey = CRM_Mailchimptemplate_Settings::getApikey();
     }
 
-    public function buildQuickForm()
+    /**
+     * @return void
+     * @throws \CRM_Core_Exception
+     */
+    public function buildQuickForm(): void
     {
         // add form elements
         $this->add(
@@ -44,7 +55,11 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplateSettings extends CRM_Core_Form
         parent::buildQuickForm();
     }
 
-    public function postProcess()
+    /**
+     * @return void
+     * @throws \CRM_Core_Exception
+     */
+    public function postProcess(): void
     {
         $sanitizedapikey = CRM_RcBase_Processor_Base::sanitizeString($this->exportValue(CRM_Mailchimptemplate_Settings::ELFIELDNAME));
         CRM_Mailchimptemplate_Settings::setApikey($sanitizedapikey);
@@ -56,7 +71,7 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplateSettings extends CRM_Core_Form
      *
      * @return array (string)
      */
-    public function getRenderableElementNames()
+    public function getRenderableElementNames(): array
     {
         // The _elements list includes some items which should not be
         // auto-rendered in the loop -- such as "qfKey" and "buttons".  These

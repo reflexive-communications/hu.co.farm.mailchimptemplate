@@ -7,12 +7,20 @@ use Civi\Mailchimptemplate\HeadlessTestCase;
  */
 class CRM_Mailchimptemplate_Form_MailchimpTemplateSettingsTest extends HeadlessTestCase
 {
+    /**
+     * @return void
+     * @throws \CRM_Core_Exception
+     */
     public function testPreProcess()
     {
         $form = new CRM_Mailchimptemplate_Form_MailchimpTemplateSettings();
         $this->assertEmpty($form->preProcess());
     }
 
+    /**
+     * @return void
+     * @throws \CRM_Core_Exception
+     */
     public function testBuildQuickForm()
     {
         $form = new CRM_Mailchimptemplate_Form_MailchimpTemplateSettings();
@@ -20,6 +28,10 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplateSettingsTest extends HeadlessT
         $this->assertEmpty($form->buildQuickForm());
     }
 
+    /**
+     * @return void
+     * @throws \CRM_Core_Exception
+     */
     public function testPostProcess()
     {
         $apikey = 'postprocess-apikey';

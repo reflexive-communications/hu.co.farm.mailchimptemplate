@@ -1,10 +1,9 @@
 <?php
 
-require_once 'CRM/Core/Form.php';
 require_once 'vendor/MailChimp.php';
 
-use DrewM\MailChimp\MailChimp;
 use CRM_Mailchimptemplate_ExtensionUtil as E;
+use DrewM\MailChimp\MailChimp;
 
 /**
  * Form controller class
@@ -13,8 +12,14 @@ use CRM_Mailchimptemplate_ExtensionUtil as E;
  */
 class CRM_Mailchimptemplate_Form_MailchimpTemplate extends CRM_Core_Form
 {
-    private $MailChimp = null;
+    /**
+     * @var \DrewM\MailChimp\MailChimp
+     */
+    private MailChimp $MailChimp;
 
+    /**
+     * @throws \Exception
+     */
     public function __construct()
     {
         $apikey = CRM_Mailchimptemplate_Settings::getApikey();
@@ -22,7 +27,11 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplate extends CRM_Core_Form
         parent::__construct();
     }
 
-    public function buildQuickForm()
+    /**
+     * @return void
+     * @throws \CRM_Core_Exception
+     */
+    public function buildQuickForm(): void
     {
         // add form elements
         $this->add(
@@ -48,7 +57,11 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplate extends CRM_Core_Form
         parent::buildQuickForm();
     }
 
-    public function postProcess()
+    /**
+     * @return void
+     * @throws \CiviCRM_API3_Exception
+     */
+    public function postProcess(): void
     {
         $values = $this->exportValues();
         $campaign_id = $values['campaign'];
@@ -93,24 +106,21 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplate extends CRM_Core_Form
             'create',
             [
                 'sequential' => 1,
-                'created_id' => "user_contact_id",
+                'created_id' => 'user_contact_id',
                 'name' => $campaign['settings']['title'],
                 'subject' => $campaign['settings']['subject_line'],
                 'body_html' => $html,
                 'body_text' => $text,
             ]
         );
-        // dpm($result, 'mailing result');
 
         CRM_Utils_System::redirect('/civicrm/a#/mailing/'.$result['id']);
-
-        // CRM_Core_Session::setStatus(ts('You picked campaign "%1"', array(
-        //   1 => $options[$values['campaign']]
-        // )));
-        // parent::postProcess();
     }
 
-    public function getCampaigns()
+    /**
+     * @return array
+     */
+    public function getCampaigns(): array
     {
         $limit = 999;
 
@@ -139,7 +149,7 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplate extends CRM_Core_Form
      *
      * @return array (string)
      */
-    public function getRenderableElementNames()
+    public function getRenderableElementNames(): array
     {
         // The _elements list includes some items which should not be
         // auto-rendered in the loop -- such as "qfKey" and "buttons".  These
