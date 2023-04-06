@@ -1,8 +1,11 @@
 <?php
 
-use Civi\RcBase\Settings;
+namespace Civi\Mailchimptemplate;
 
-class CRM_Mailchimptemplate_Settings
+use Civi\RcBase\Settings;
+use CRM_RcBase_Setting;
+
+class Config
 {
     public const SETTINGKEY = 'MailchimpTemplate_apikey';
 

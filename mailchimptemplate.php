@@ -2,6 +2,7 @@
 
 require_once 'mailchimptemplate.civix.php';
 
+use Civi\Mailchimptemplate\Config;
 use CRM_Mailchimptemplate_ExtensionUtil as E;
 
 /**
@@ -79,6 +80,6 @@ function mailchimptemplate_civicrm_cryptoRotateKey($tag, $log): void
     if ($tag !== 'CRED') {
         return;
     }
-    CRM_Mailchimptemplate_Settings::rotateApikey();
+    Config::rotateApikey();
     $log->info(E::LONG_NAME.': Successful re-keying');
 }

@@ -2,6 +2,7 @@
 
 require_once 'vendor/MailChimp.php';
 
+use Civi\Mailchimptemplate\Config;
 use CRM_Mailchimptemplate_ExtensionUtil as E;
 use DrewM\MailChimp\MailChimp;
 
@@ -22,7 +23,7 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplate extends CRM_Core_Form
      */
     public function __construct()
     {
-        $apikey = CRM_Mailchimptemplate_Settings::getApikey();
+        $apikey = Config::getApikey();
         $this->MailChimp = new MailChimp($apikey);
         parent::__construct();
     }
