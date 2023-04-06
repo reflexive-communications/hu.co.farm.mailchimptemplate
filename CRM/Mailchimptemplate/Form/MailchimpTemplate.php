@@ -158,7 +158,6 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplate extends CRM_Core_Form
         // the 'label'.
         $elementNames = [];
         foreach ($this->_elements as $element) {
-            /** @var HTML_QuickForm_Element $element */
             $label = $element->getLabel();
             if (!empty($label)) {
                 $elementNames[] = $element->getName();
