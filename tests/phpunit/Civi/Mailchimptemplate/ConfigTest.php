@@ -1,11 +1,13 @@
 <?php
 
-use Civi\Mailchimptemplate\HeadlessTestCase;
+namespace Civi\Mailchimptemplate;
+
+use Civi;
 
 /**
  * @group headless
  */
-class CRM_Mailchimptemplate_SettingsTest extends HeadlessTestCase
+class ConfigTest extends HeadlessTestCase
 {
     /**
      * @throws \Civi\RcBase\Exception\MissingArgumentException
@@ -14,8 +16,8 @@ class CRM_Mailchimptemplate_SettingsTest extends HeadlessTestCase
     public function testSaveLoadApikey(): void
     {
         $testApiKey = 'test-apikey';
-        CRM_Mailchimptemplate_Settings::setApikey($testApiKey);
-        self::assertEquals($testApiKey, CRM_Mailchimptemplate_Settings::getApikey(), 'Loaded "apikey" has to be equal with saved "apikey".');
+        Config::setApikey($testApiKey);
+        self::assertEquals($testApiKey, Config::getApikey(), 'Loaded "apikey" has to be equal with saved "apikey".');
 
         // Add new encryption key & rotate API key
         Civi::service('crypto.registry')->addSymmetricKey([
@@ -24,9 +26,9 @@ class CRM_Mailchimptemplate_SettingsTest extends HeadlessTestCase
             'tags' => ['CRED'],
             'weight' => -1,
         ]);
-        $key_raw = Civi::settings()->get(CRM_Mailchimptemplate_Settings::SETTINGKEY);
-        CRM_Mailchimptemplate_Settings::rotateApikey();
-        $key_raw_rekeyed = Civi::settings()->get(CRM_Mailchimptemplate_Settings::SETTINGKEY);
+        $key_raw = Civi::settings()->get(Config::SETTINGKEY);
+        Config::rotateApikey();
+        $key_raw_rekeyed = Civi::settings()->get(Config::SETTINGKEY);
         self::assertNotSame($key_raw, $key_raw_rekeyed, 'API key not rotated');
     }
 }

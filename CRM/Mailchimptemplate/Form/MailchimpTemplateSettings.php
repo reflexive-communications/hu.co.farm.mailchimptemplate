@@ -1,5 +1,6 @@
 <?php
 
+use Civi\Mailchimptemplate\Config;
 use CRM_Mailchimptemplate_ExtensionUtil as E;
 
 /**
@@ -21,7 +22,7 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplateSettings extends CRM_Core_Form
     public function preProcess(): void
     {
         parent::preProcess();
-        $this->apikey = CRM_Mailchimptemplate_Settings::getApikey();
+        $this->apikey = Config::getApikey();
     }
 
     /**
@@ -33,7 +34,7 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplateSettings extends CRM_Core_Form
         // add form elements
         $this->add(
             'password', // field type
-            CRM_Mailchimptemplate_Settings::ELFIELDNAME, // field name
+            Config::ELFIELDNAME, // field name
             E::ts('MailChimp API key'), // field label
             null, // list of options
             false // is required
@@ -61,8 +62,8 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplateSettings extends CRM_Core_Form
      */
     public function postProcess(): void
     {
-        $sanitizedapikey = CRM_RcBase_Processor_Base::sanitizeString($this->exportValue(CRM_Mailchimptemplate_Settings::ELFIELDNAME));
-        CRM_Mailchimptemplate_Settings::setApikey($sanitizedapikey);
+        $sanitizedapikey = CRM_RcBase_Processor_Base::sanitizeString($this->exportValue(Config::ELFIELDNAME));
+        Config::setApikey($sanitizedapikey);
         CRM_Core_Session::setStatus(E::ts('Settings updated'), '', 'success', ['expires' => 5000]);
     }
 
@@ -79,7 +80,6 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplateSettings extends CRM_Core_Form
         // the 'label'.
         $elementNames = [];
         foreach ($this->_elements as $element) {
-            /** @var HTML_QuickForm_Element $element */
             $label = $element->getLabel();
             if (!empty($label)) {
                 $elementNames[] = $element->getName();

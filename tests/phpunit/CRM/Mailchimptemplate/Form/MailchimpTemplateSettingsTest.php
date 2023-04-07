@@ -1,5 +1,6 @@
 <?php
 
+use Civi\Mailchimptemplate\Config;
 use Civi\Mailchimptemplate\HeadlessTestCase;
 
 /**
@@ -41,12 +42,12 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplateSettingsTest extends HeadlessT
         $form->buildQuickForm();
 
         $submitValues = [
-            CRM_Mailchimptemplate_Settings::ELFIELDNAME => $apikey,
+            Config::ELFIELDNAME => $apikey,
         ];
         $form->setVar('_submitValues', $submitValues);
         $this->assertEmpty($form->postProcess());
 
-        $savedApiKey = CRM_Mailchimptemplate_Settings::getApikey();
+        $savedApiKey = Config::getApikey();
         $this->assertEquals($apikey, $savedApiKey, 'Form saved API key is wrong.');
     }
 }
