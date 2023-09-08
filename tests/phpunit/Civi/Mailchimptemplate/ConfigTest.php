@@ -3,6 +3,7 @@
 namespace Civi\Mailchimptemplate;
 
 use Civi;
+use Civi\RcBase\Settings;
 
 /**
  * @group headless
@@ -10,25 +11,26 @@ use Civi;
 class ConfigTest extends HeadlessTestCase
 {
     /**
+     * @return void
+     * @throws \Civi\RcBase\Exception\DataBaseException
      * @throws \Civi\RcBase\Exception\MissingArgumentException
-     * @throws \Civi\RcBase\Exception\DataBaseException|\CRM_Core_Exception
      */
-    public function testSaveLoadApikey(): void
+    public function testRotateKeys()
     {
-        $testApiKey = 'test-apikey';
-        Config::setApikey($testApiKey);
-        self::assertEquals($testApiKey, Config::getApikey(), 'Loaded "apikey" has to be equal with saved "apikey".');
+        Settings::saveSecret(Config::SETTINGKEY, 'old-pass');
+        $old_cipher = Civi::settings()->get(Config::SETTINGKEY);
 
-        // Add new encryption key & rotate API key
+        // Add new encryption key & rotate tokens
         Civi::service('crypto.registry')->addSymmetricKey([
             'key' => '12345678901234567890123456789012',
             'suite' => 'aes-cbc',
             'tags' => ['CRED'],
             'weight' => -1,
         ]);
-        $key_raw = Civi::settings()->get(Config::SETTINGKEY);
         Config::rotateApikey();
-        $key_raw_rekeyed = Civi::settings()->get(Config::SETTINGKEY);
-        self::assertNotSame($key_raw, $key_raw_rekeyed, 'API key not rotated');
+
+        $new_cipher = Civi::settings()->get(Config::SETTINGKEY);
+        self::assertFalse(Civi::service('crypto.token')->isPlainText($new_cipher, 'API key not encrypted'));
+        self::assertNotSame($old_cipher, $new_cipher, 'Key not rotated');
     }
 }
