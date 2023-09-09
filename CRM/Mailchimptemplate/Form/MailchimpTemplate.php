@@ -3,6 +3,7 @@
 require_once 'vendor/MailChimp.php';
 
 use Civi\Mailchimptemplate\Config;
+use Civi\RcBase\Settings;
 use CRM_Mailchimptemplate_ExtensionUtil as E;
 use DrewM\MailChimp\MailChimp;
 
@@ -19,13 +20,19 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplate extends CRM_Core_Form
     private MailChimp $MailChimp;
 
     /**
-     * @throws \Exception
+     * @return void
+     * @throws \CRM_Core_Exception
      */
-    public function __construct()
+    public function preProcess(): void
     {
-        $apikey = Config::getApikey();
-        $this->MailChimp = new MailChimp($apikey);
-        parent::__construct();
+        $apikey = Settings::get(Config::SETTINGKEY);
+
+        try {
+            $this->MailChimp = new MailChimp($apikey);
+        } catch (Throwable $ex) {
+            CRM_Core_Session::setStatus(E::ts('Failed to connect to Mailchimp, reason: %1', [1 => $ex->getMessage()]), 'MailChimp template', 'error');
+            CRM_Utils_System::redirect(CRM_Utils_System::url('civicrm'));
+        }
     }
 
     /**

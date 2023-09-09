@@ -1,6 +1,7 @@
 <?php
 
 use Civi\Mailchimptemplate\Config;
+use Civi\RcBase\Settings;
 use CRM_Mailchimptemplate_ExtensionUtil as E;
 
 /**
@@ -21,8 +22,7 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplateSettings extends CRM_Core_Form
      */
     public function preProcess(): void
     {
-        parent::preProcess();
-        $this->apikey = Config::getApikey();
+        $this->apikey = Settings::get(Config::SETTINGKEY);
     }
 
     /**
@@ -63,7 +63,7 @@ class CRM_Mailchimptemplate_Form_MailchimpTemplateSettings extends CRM_Core_Form
     public function postProcess(): void
     {
         $sanitizedapikey = CRM_RcBase_Processor_Base::sanitizeString($this->exportValue(Config::ELFIELDNAME));
-        Config::setApikey($sanitizedapikey);
+        Settings::saveSecret(Config::SETTINGKEY, $sanitizedapikey);
         CRM_Core_Session::setStatus(E::ts('Settings updated'), '', 'success', ['expires' => 5000]);
     }
 
