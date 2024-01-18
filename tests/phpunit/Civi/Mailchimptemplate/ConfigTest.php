@@ -18,6 +18,7 @@ class ConfigTest extends HeadlessTestCase
     public function testRotateKeys()
     {
         Settings::saveSecret(Config::SETTINGKEY, 'old-pass');
+        // Use Civi::settings() to fetch the cipher, as \Civi\RcBase\Settings::get will decrypt it
         $old_cipher = Civi::settings()->get(Config::SETTINGKEY);
 
         // Add new encryption key & rotate tokens
@@ -29,8 +30,9 @@ class ConfigTest extends HeadlessTestCase
         ]);
         Config::rotateApikey();
 
+        // Use Civi::settings() to fetch the cipher, as \Civi\RcBase\Settings::get will decrypt it
         $new_cipher = Civi::settings()->get(Config::SETTINGKEY);
-        self::assertFalse(Civi::service('crypto.token')->isPlainText($new_cipher, 'API key not encrypted'));
+        self::assertTrue(Settings::isEncrypted($new_cipher), 'API key not encrypted');
         self::assertNotSame($old_cipher, $new_cipher, 'Key not rotated');
     }
 }
